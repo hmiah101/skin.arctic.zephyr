@@ -7,7 +7,7 @@
 	<onload condition="System.HasAddon(script.videoextras)">RunScript(script.videoextras,check,"$INFO[ListItem.FilenameAndPath]")</onload>
 	<onload>ClearProperty(content)</onload>
 	<onload>ClearProperty(movie.Fanart,home)</onload>
-	<onload condition="Skin.HasSetting(global.showvideo)">Skin.ToggleSetting(global.showvideo)</onload><!--Disable Now Playing BG to enable fanart while trailer-->
+	<onload condition="Skin.HasSetting(global.showvideo)">Skin.ToggleSetting(global.showvideo)</onload><!--Disable Now Playing BG to enable fanart while trailer playing-->
 	<onload condition="!IsEmpty(ListItem.Trailer) + IsEmpty(Window(10025).Property(PlayingBackgroundMedia))">AlarmClock(PlayTrailer,PlayMedia($INFO[ListItem.Trailer],false,1),00:02,silent)</onload>
 	
 	<controls>
@@ -21,7 +21,7 @@
 			<height>180</height>
 			<visible>Container.Content(movies) + Player.HasVideo</visible>
 		</control>
-		<control type="label">
+		<control type="button" id="1234">
 			<description>Trailer Video Window Label</description>
 			<right>SidePad</right>
 			<top>410</top>
@@ -32,8 +32,17 @@
 			<size>15</size>
 			<textcolor>Dark2</textcolor>
 			<animation effect="fade" time="700">VisibleChange</animation>
-			<visible>Control.HasFocus(9602) + Container.Content(movies) + Player.HasVideo</visible>
+			<onback>9000</onback>
+			<onleft>9000</onleft>
+			<onright>9000</onright>
+			<onup>9000</onup>
+			<ondown>9000</ondown>
+			<ondown>PlayerControl(stop)</ondown>
+			<onclick>Action(fullscreen)</onclick>
+			<pulseonselect>true</pulseonselect>
+			<texturefocus></texturefocus>
 			<label>[LIGHT]Click for full screen[/LIGHT]</label>
+			<visible allowhiddenfocus="true">Control.HasFocus(1234) + Container.Content(movies) + Player.HasVideo</visible>
 		</control>
 		
 		<control type="image" id="2">
@@ -42,7 +51,6 @@
 			<top>240</top>
 			<height>180</height>
 			<aspectratio align="right" aligny="top">keep</aspectratio>
-			<!--<visible>ControlGroup(9000).HasFocus() + Container.Content(episodes)</visible>-->
 			<visible>Control.HasFocus(8) + Container.Content(episodes)</visible>
 			<animation effect="fade" time="400">VisibleChange</animation>
 			<texture diffuse="diffuse/wall-fanart.png" background="true">$INFO[ListItem.Thumb]</texture>
@@ -131,18 +139,7 @@
 					<onleft>9000</onleft>
 					<onright>9000</onright>
 				</control>
-				<control type="button" id ="9602">
-					<width>1</width>
-					<height>1</height>
-					<visible allowhiddenfocus="true">false</visible>
-					<onback>9000</onback>
-					<onup>9000</onup>
-					<onleft>9000</onleft>
-					<onright>9000</onright>
-					<ondown>PlayerControl(stop)</ondown>
-					<onclick>Action(fullscreen)</onclick>
-				</control>
-				
+
 				<!-- Control Buttons -->
 				<control type="grouplist" id="9000">
 					<visible allowhiddenfocus="true">ControlGroup(9000).HasFocus()</visible>
@@ -155,7 +152,8 @@
 					<onup condition="Control.IsVisible(50)">51</onup>
 					<onup condition="Control.IsVisible(9501)">9501</onup>
 					<onup condition="!Control.IsVisible(50) + !Control.IsVisible(9501)">9601</onup>
-					<ondown condition="!Control.IsVisible(50) + !Control.IsVisible(9501)">9602</ondown>
+					<ondown condition="!Control.IsVisible(50) + !Control.IsVisible(9501) + !Player.HasVideo">9601</ondown>
+					<ondown condition="!Control.IsVisible(50) + !Control.IsVisible(9501) + Container.Content(movies) + Player.HasVideo">1234</ondown>
 					<orientation>horizontal</orientation>
 					
 					<control type="button" id ="8">
@@ -962,7 +960,7 @@
 		</control>
 		
 		<control type="group">
-			<visible>Control.HasFocus(9601) | Control.HasFocus(9602) + !Player.HasVideo</visible>
+			<visible>Control.HasFocus(9601)</visible>
 			<include>Animation.FadeIn</include>
 			<include>Animation.FadeOut</include>
 			
@@ -988,7 +986,7 @@
 			<right>SidePad</right>
 			<top>PosterPad</top>
 			<height>640</height>
-			<visible>Control.HasFocus(9601) | Control.HasFocus(9602) + !Player.HasVideo</visible>
+			<visible>Control.HasFocus(9601)</visible>
 			<include>Animation.FadeIn.Slide</include>
 			<include>Animation.FadeOut</include>
 			
