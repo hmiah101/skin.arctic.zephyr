@@ -50,13 +50,18 @@
                     <right>SidePad</right>
                     <top>20</top>
                     <bottom>20</bottom>
-                    <control type="image">
-                        <width>173</width>
-                        <height>260</height>
-                        <texture>$VAR[PlayerPoster]</texture>
-                        <visible>!IsEmpty(Player.Art(tvshow.poster)) | !IsEmpty(Player.Art(poster))</visible>
-                    </control>
-                    
+					
+					<control type="image">
+						<width>240</width>
+						<height>350</height>
+						<centerright>1700</centerright>
+						<centerbottom>170</centerbottom>
+						<bottom>20</bottom>
+						<aspectratio align="right">keep</aspectratio>
+						<texture diffuse="diffuse/wall-fanart.png" background="true">$VAR[PlayerPoster]</texture>
+						<visible>!IsEmpty(Player.Art(tvshow.poster)) | !IsEmpty(Player.Art(poster)) | [!IsEmpty(Player.Art(thumb)) + !VideoPlayer.Content(LiveTV)]</visible>
+					</control>
+					
                     <control type="image">
                         <width>260</width>
                         <height>260</height>
@@ -73,13 +78,13 @@
                     
                     <control type="group">
                         <left>203</left>
-                        <visible>!IsEmpty(Player.Art(tvshow.poster)) | !IsEmpty(Player.Art(poster))</visible>
+                        <visible>!IsEmpty(Player.Art(tvshow.poster)) | !IsEmpty(Player.Art(poster)) | [!IsEmpty(Player.Art(thumb)) + !VideoPlayer.Content(LiveTV)]</visible>
                         <include>OSDInfoContent</include>
                     </control>
                     
                     <control type="group">
                         <left>0</left>
-                        <visible>IsEmpty(Player.Art(tvshow.poster)) + IsEmpty(Player.Art(poster)) + [!VideoPlayer.Content(LiveTV) | IsEmpty(Player.Art(thumb))]</visible>
+                        <visible>IsEmpty(Player.Art(tvshow.poster)) + IsEmpty(Player.Art(poster)) + [IsEmpty(Player.Art(thumb)) + !VideoPlayer.Content(LiveTV)]</visible>
                         <include>OSDInfoContent</include>
                     </control>
                 
