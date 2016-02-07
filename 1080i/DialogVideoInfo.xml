@@ -11,6 +11,7 @@
 	<onload condition="!IsEmpty(ListItem.Trailer) + IsEmpty(Window(10025).Property(PlayingBackgroundMedia))">AlarmClock(PlayTrailer,PlayMedia($INFO[ListItem.Trailer],false,1),00:02,silent)</onload>
 	
 	<controls>
+		
 		<!--Trailer/Episode Thumbnail Window and Studio Image-->
 		<control type="videowindow" id="2">
 			<description>Trailer Video Window</description>
@@ -18,7 +19,7 @@
 			<top>240</top>
 			<width>320</width>
 			<height>180</height>
-			<visible>Container.Content(movies) + Player.HasVideo + [!Control.IsVisible(50) + IsEmpty(Window.Property(content))]</visible>
+			<visible>Container.Content(movies) + Player.HasVideo</visible>
 		</control>
 		<control type="label">
 			<description>Trailer Video Window Label</description>
@@ -30,11 +31,10 @@
 			<font>Mini</font>
 			<size>15</size>
 			<textcolor>Dark2</textcolor>
-			<animation effect="fade" time="700">VisibleChange</animation>'
-			<visible>Control.HasFocus(9602) + Container.Content(movies) + Player.HasVideo + [!Control.IsVisible(50) + IsEmpty(Window.Property(content))]</visible>
+			<animation effect="fade" time="700">VisibleChange</animation>
+			<visible>Control.HasFocus(9602) + Container.Content(movies) + Player.HasVideo</visible>
 			<label>[LIGHT]Click for full screen[/LIGHT]</label>
 		</control>
-		
 		
 		<control type="image" id="2">
 			<description>Episode Thumbnail</description>
@@ -962,7 +962,7 @@
 		</control>
 		
 		<control type="group">
-			<visible>Control.HasFocus(9601)</visible>
+			<visible>Control.HasFocus(9601) | Control.HasFocus(9602) + !Player.HasVideo</visible>
 			<include>Animation.FadeIn</include>
 			<include>Animation.FadeOut</include>
 			
@@ -988,7 +988,7 @@
 			<right>SidePad</right>
 			<top>PosterPad</top>
 			<height>640</height>
-			<visible>Control.HasFocus(9601)</visible>
+			<visible>Control.HasFocus(9601) | Control.HasFocus(9602) + !Player.HasVideo</visible>
 			<include>Animation.FadeIn.Slide</include>
 			<include>Animation.FadeOut</include>
 			
