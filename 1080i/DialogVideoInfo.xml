@@ -7,11 +7,11 @@
 	<onload condition="System.HasAddon(script.videoextras)">RunScript(script.videoextras,check,"$INFO[ListItem.FilenameAndPath]")</onload>
 	<onload>ClearProperty(content)</onload>
 	<onload>ClearProperty(movie.Fanart,home)</onload>
-	
+	<onload condition="Skin.HasSetting(global.showvideo)">Skin.ToggleSetting(global.showvideo)</onload><!--Disable Now Playing BG to enable fanart while trailer-->
 	<onload condition="!IsEmpty(ListItem.Trailer) + IsEmpty(Window(10025).Property(PlayingBackgroundMedia))">AlarmClock(PlayTrailer,PlayMedia($INFO[ListItem.Trailer],false,1),00:02,silent)</onload>
 	
 	<controls>
-		
+		<!--Trailer/Episode Thumbnail Window and Studio Image-->
 		<control type="videowindow" id="2">
 			<description>Trailer Video Window</description>
 			<right>SidePad</right>
@@ -1030,5 +1030,5 @@
 		
 		
 	</controls>
-	
+	<onunload condition="!Skin.HasSetting(global.showvideo)">Skin.ToggleSetting(global.showvideo)</onunload><!--Note: This will mean Now Playing BG will always be activated!-->
 </window>
