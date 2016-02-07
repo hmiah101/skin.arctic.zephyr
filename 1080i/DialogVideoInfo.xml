@@ -19,7 +19,7 @@
 			<top>240</top>
 			<width>320</width>
 			<height>180</height>
-			<visible>Container.Content(movies) + Player.HasVideo</visible>
+			<visible>Container.Content(movies) + Player.HasVideo + [!Control.IsVisible(50) + IsEmpty(Window.Property(content))]</visible>
 		</control>
 		<control type="button" id="1234">
 			<description>Trailer Video Window Label</description>
