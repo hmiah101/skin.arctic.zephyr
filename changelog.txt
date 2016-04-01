@@ -1,3 +1,43 @@
+[B]2.2.8[/B]
+Add option "Allow widget reloading" to disable persistent widgets
+
+[B]2.2.7[/B]
+Fix hub items not able to set icons
+Remove redundant hub settings in skin settings
+Add hevc flag
+
+[B]2.2.6[/B]
+Additionally customisable hub items (9 total)
+ -- May need to reset your hub items after this update
+
+[B]2.2.5[/B]
+Fix vertical widgets fallback image
+Add ability to choose spotlight fallback widget
+Add widgets on up for featured
+
+[B]2.2.4[/B]
+Fix keyboard zorder
+
+[B]2.2.3[/B]
+Add Keyboard Autocompletion module
+Add PVR Thumb support from skin helper
+
+[B]2.2.2[/B]
+Fix special episodes for banner view
+Add DialogPVRInfo
+Add EventLog
+Add AudioDSP
+Add missing DefaultImages
+
+[B]2.2.1[/B]
+Fix only display widgets on up
+Better visibility handling for widgets
+Add weather widget to Classic home
+
+[B]2.2.0[/B]
+Add skinshortcuts widget templates for persistent widgets (no reloading)
+Fix extendedinfo browser views tag
+
 [B]2.1.4[/B]
 Fix extended info dialogs for ExtendedInfo 4.0
 
